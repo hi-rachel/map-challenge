@@ -124,9 +124,9 @@ const Home = () => {
   };
 
   return (
-    <div>
-      <h1>YourPick Map</h1>
-      <div id="map" style={{ width: "100%", height: "500px" }} />
+    <div className="w-full px-4">
+      <h1 className="text-xl font-bold text-center my-5">YOURPICK MAP</h1>
+      <div id="map" className="w-full h-[500px] rounded-lg" />
       <div className="flex justify-center space-x-4 p-4 mt-4">
         <button
           className={`flex flex-col items-center ${
@@ -134,7 +134,7 @@ const Home = () => {
           }`}
           onClick={() => toggleType("CAFE")}
         >
-          <img src="/pin-cafe.svg" width={32} height={32} alt="카페" />
+          <img src="/pin-cafe.svg" width={50} height={50} alt="카페" />
           <span>카페</span>
         </button>
         <button
@@ -143,7 +143,7 @@ const Home = () => {
           }`}
           onClick={() => toggleType("FOOD")}
         >
-          <img src="/pin-food.svg" width={32} height={32} alt="음식점" />
+          <img src="/pin-food.svg" width={50} height={50} alt="음식점" />
           <span>음식점</span>
         </button>
         <button
@@ -152,7 +152,7 @@ const Home = () => {
           }`}
           onClick={() => toggleType("MART")}
         >
-          <img src="/pin-mart.svg" width={32} height={32} alt="편의점" />
+          <img src="/pin-mart.svg" width={50} height={50} alt="편의점" />
           <span>편의점</span>
         </button>
         <button
@@ -161,10 +161,15 @@ const Home = () => {
           }`}
           onClick={() => toggleType("PHARMACY")}
         >
-          <img src="/pin-pharmacy.svg" width={32} height={32} alt="약국" />
+          <img src="/pin-pharmacy.svg" width={50} height={50} alt="약국" />
           <span>약국</span>
         </button>
       </div>
+      <footer className="text-center text-sm text-gray-400 mt-6">
+        <a target="_blank" href="https://github.com/hi-rachel/map-challenge">
+          @hi-rachel
+        </a>
+      </footer>
     </div>
   );
 };

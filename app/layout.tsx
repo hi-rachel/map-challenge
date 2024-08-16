@@ -6,7 +6,7 @@ import Script from "next/script";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "YOURPICK Map",
+  title: "유어픽 지도",
   description: "유어픽 지도 구현",
 };
 
