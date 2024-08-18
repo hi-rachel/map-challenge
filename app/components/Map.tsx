@@ -16,7 +16,9 @@ const Map = ({
 
   return (
     <div className="w-full px-4 min-w-96">
-      <h1 className="text-xl font-bold text-center my-5">YOURPICK MAP</h1>
+      <h1 className="text-2xl font-bold text-center my-5 text-main">
+        YOURPICK MAP
+      </h1>
       <div id="map" className="w-full h-[500px] rounded-lg" />
       <div className="flex justify-center space-x-4 p-4 mt-4">
         {Object.keys(icons).map(
@@ -36,7 +38,9 @@ const Map = ({
         )}
       </div>
       <footer className="text-center text-sm text-gray-400 mt-6">
-        @hi-rachel
+        <a href="https://github.com/hi-rachel/map-challenge" target="_blank">
+          @hi-rachel
+        </a>
       </footer>
     </div>
   );
