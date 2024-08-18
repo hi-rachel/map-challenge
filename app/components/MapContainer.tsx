@@ -30,7 +30,7 @@ const MapContainer = () => {
       if (window.naver && window.naver.maps) {
         const mapOptions = {
           center: new naver.maps.LatLng(CENTER_LAT, CENTER_LNG),
-          zoom: 15,
+          zoom: 17,
           zoomControl: true,
           zoomControlOptions: {
             position: naver.maps.Position.TOP_RIGHT,
