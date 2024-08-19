@@ -3,14 +3,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Map from "./Map";
-
-interface Marker {
-  type: "CAFE" | "FOOD" | "MART" | "PHARMACY";
-  name: string;
-  address: string;
-  lat: string;
-  lng: string;
-}
+import { Marker } from "../types/mapMarker";
 
 const CENTER_LAT = 37.5358994;
 const CENTER_LNG = 126.8969627;
@@ -18,12 +11,9 @@ const CENTER_LNG = 126.8969627;
 const MapContainer = () => {
   const [map, setMap] = useState<naver.maps.Map | null>(null);
   const [markers, setMarkers] = useState<naver.maps.Marker[]>([]);
-  const [selectedTypes, setSelectedTypes] = useState<string[]>([
-    "CAFE",
-    "FOOD",
-    "MART",
-    "PHARMACY",
-  ]);
+  const [selectedTypes, setSelectedTypes] = useState<Set<string>>(
+    new Set(["CAFE", "FOOD", "MART", "PHARMACY"])
+  );
 
   const icons = {
     CAFE: "/pin-cafe.svg",
@@ -78,13 +68,17 @@ const MapContainer = () => {
           initMap();
         }
       }, 100);
+
+      return () => clearInterval(intervalId);
     }
   }, []);
 
   useEffect(() => {
     const fetchMarkers = async () => {
       try {
-        const response = await axios.get(`${process.env.NEXT_PUBLIC_API}`);
+        const response = await axios.get<Marker[]>(
+          `${process.env.NEXT_PUBLIC_API}`
+        );
         const data = response.data;
 
         if (map && data.length > 0) {
@@ -120,16 +114,20 @@ const MapContainer = () => {
 
   useEffect(() => {
     markers.forEach((marker) => {
-      marker.setVisible(selectedTypes.includes(marker.getTitle()!));
+      marker.setVisible(selectedTypes.has(marker.getTitle()!));
     });
   }, [selectedTypes, markers]);
 
   const toggleType = (type: string) => {
-    setSelectedTypes((prevTypes) =>
-      prevTypes.includes(type)
-        ? prevTypes.filter((t) => t !== type)
-        : [...prevTypes, type]
-    );
+    setSelectedTypes((prevTypes) => {
+      const newTypes = new Set(prevTypes);
+      if (newTypes.has(type)) {
+        newTypes.delete(type);
+      } else {
+        newTypes.add(type);
+      }
+      return newTypes;
+    });
   };
 
   return (

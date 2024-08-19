@@ -3,7 +3,7 @@ const Map = ({
   toggleType,
   icons,
 }: {
-  selectedTypes: string[];
+  selectedTypes: Set<string>;
   toggleType: (type: string) => void;
   icons: { [key: string]: string };
 }) => {
@@ -27,7 +27,7 @@ const Map = ({
               <button
                 key={type}
                 className={`flex flex-col items-center ${
-                  selectedTypes.includes(type) ? "opacity-100" : "opacity-50"
+                  selectedTypes.has(type) ? "opacity-100" : "opacity-50"
                 }`}
                 onClick={() => toggleType(type)}
               >
