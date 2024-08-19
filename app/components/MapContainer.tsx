@@ -4,6 +4,14 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Map from "./Map";
 
+interface Marker {
+  type: "CAFE" | "FOOD" | "MART" | "PHARMACY";
+  name: string;
+  address: string;
+  lat: string;
+  lng: string;
+}
+
 const CENTER_LAT = 37.5358994;
 const CENTER_LNG = 126.8969627;
 
@@ -80,7 +88,7 @@ const MapContainer = () => {
         const data = response.data;
 
         if (map && data.length > 0) {
-          const newMarkers = data.map((item: any) => {
+          const newMarkers = data.map((item: Marker) => {
             const marker = new naver.maps.Marker({
               position: new naver.maps.LatLng(
                 parseFloat(item.lat),
