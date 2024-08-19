@@ -114,7 +114,7 @@ const MapContainer = () => {
 
   useEffect(() => {
     markers.forEach((marker) => {
-      marker.setVisible(selectedTypes.has(marker.getTitle()!));
+      marker.setVisible(selectedTypes.has(marker.getTitle()));
     });
   }, [selectedTypes, markers]);
 
